@@ -1,2 +1,2 @@
 # stepik_final_aqa_task
-This repo created to improove AQA skils and turn knowledges to practice.
+This repository was created to improve my AQA skills and put knowledge into practice.
