@@ -12,3 +12,4 @@ class LoginPageLocators():
     REGISTRATION_PASSWORD_REPEAT = (By.CSS_SELECTOR, "#id_registration-password2")
     LOGIN_FORM = (By.CSS_LOCATOR, "#login_form")
     REGISTRATION_FORM = (By.CSS_LOCATOR, "#register_form")
+    
