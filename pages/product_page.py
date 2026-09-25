@@ -51,3 +51,7 @@ class ProductPage(BasePage):
             alert.accept()
         except NoAlertPresentException:
             print("No second alert presented")
+    def should_not_be_success_message(self):
+        # Используем локатор вашего сообщения об успехе
+        assert self.is_not_element_present(By.CSS_SELECTOR, ".alert-success .alertinner strong"), \
+           "Success message is presented, but should not be"
