@@ -1,36 +1,37 @@
 import math
 from .base_page import BasePage
-#from .locators import 
+from .locators import ProductPageLocators
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoAlertPresentException
+
 
 
 class ProductPage(BasePage):
     
 # 1. Метод для ДЕЙСТВИЯ    
     def add_product_to_cart(self):
-        assert self.is_element_present(By.CSS_SELECTOR, ".btn-add-to-basket"),"Add to basket button is not presented"
-        add_to_cart_button = self.browser.find_element(By.CSS_SELECTOR, ".btn-add-to-basket")
+        assert self.is_element_present(*ProductPageLocators.ADD_TO_BASKET_BUTTON),"Add to basket button is not presented"
+        add_to_cart_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         add_to_cart_button.click()
     
 # 2. Метод для ПРОВЕРКИ имени книги        
     def should_be_correct_product_name_in_cart(self):
-        assert self.is_element_present(By.CSS_SELECTOR, ".alert-success .alertinner strong"), "Success banner is not presented"
-        assert self.is_element_present(By.CSS_SELECTOR, "h1"), "Book name is not presented on page"
+        assert self.is_element_present(*ProductPageLocators.SUCCES_BANNER), "Success banner is not presented"
+        assert self.is_element_present(*ProductPageLocators.BOOK_NAME), "Book name is not presented on page"
         
-        add_to_cart_banner_with_name = self.browser.find_element(By.CSS_SELECTOR, ".alert-success .alertinner strong")
-        book_name = self.browser.find_element(By.CSS_SELECTOR, "h1")
+        add_to_cart_banner_with_name = self.browser.find_element(*ProductPageLocators.SUCCES_BANNER)
+        book_name = self.browser.find_element(*ProductPageLocators.BOOK_NAME)
         
         actual_book_name = book_name.text
         assert actual_book_name == add_to_cart_banner_with_name.text , "Book name in cart does not match the actual book name"
 
 # 3. Метод для ПРОВЕРКИ цены
     def should_be_cart_price_equals_product_price(self):
-        assert self.is_element_present(By.CSS_SELECTOR, ".alert-info .alertinner strong"), "Cart price alert is not presented"
-        assert self.is_element_present(By.CSS_SELECTOR, ".product_main .price_color"), "Product price is not presented"
+        assert self.is_element_present(*ProductPageLocators.CART_PRICE), "Cart price alert is not presented"
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_PRICE), "Product price is not presented"
         
-        cart_price = self.browser.find_element(By.CSS_SELECTOR,".alert-info .alertinner strong")
-        book_price = self.browser.find_element(By.CSS_SELECTOR,".product_main .price_color")
+        cart_price = self.browser.find_element(*ProductPageLocators.CART_PRICE)
+        book_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
         
         actual_cart_price = cart_price.text
         actual_book_price = book_price.text
@@ -52,6 +53,5 @@ class ProductPage(BasePage):
         except NoAlertPresentException:
             print("No second alert presented")
     def should_not_be_success_message(self):
-        # Используем локатор вашего сообщения об успехе
-        assert self.is_not_element_present(By.CSS_SELECTOR, ".alert-success .alertinner strong"), \
+        assert self.is_not_element_present(*ProductPageLocators.SUCCES_BANNER), \
            "Success message is presented, but should not be"

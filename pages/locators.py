@@ -7,8 +7,10 @@ class BasePageLocators():
     BASKET_LINK = (By.CSS_SELECTOR, ".btn-group > a.btn-default")
     USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
+
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#registration_link")
+    
     
 class LoginPageLocators():
     LOGIN_EMAIL = (By.CSS_SELECTOR, "#id_login-username")
@@ -24,3 +26,10 @@ class LoginPageLocators():
 class BasketPageLocators():
     BASKET_ITEMS = (By.CSS_SELECTOR, ".basket-items")
     EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
+    
+class ProductPageLocators():
+    ADD_TO_BASKET_BUTTON = (By.CSS_SELECTOR, ".btn-add-to-basket")
+    SUCCES_BANNER = (By.CSS_SELECTOR, ".alert-success .alertinner strong")
+    BOOK_NAME = (By.CSS_SELECTOR, "h1")
+    CART_PRICE = (By.CSS_SELECTOR, ".alert-info .alertinner strong")
+    PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main .price_color")
